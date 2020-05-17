@@ -15,7 +15,6 @@ def hello():
 @app.route("/virtualbox.ts")
 def virtualbox_ts():
         base = "https://www.virtualbox.org/download/testcase/nls/6.1/"
-        base = "https://www.virtualbox.org/download/testcase/nls/trunk/"
         filename = 'VirtualBox_xx_YY.ts'
         localfile = 'data/' + filename
         maybe_download_file(base, filename, True)
@@ -24,7 +23,7 @@ def virtualbox_ts():
 
 @app.route("/qmapshack.ts")
 def qmapshack_ts():
-        base = "https://raw.githubusercontent.com/Maproom/qmapshack/master/src/qmapshack/locale/"
+        base = "https://raw.githubusercontent.com/Maproom/qmapshack/dev/src/qmapshack/locale/"
         filename = "qmapshack.ts"
         localfile = 'data/' + filename
         maybe_download_file(base, filename, False)
