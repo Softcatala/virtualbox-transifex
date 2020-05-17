@@ -14,27 +14,34 @@ def hello():
 
 @app.route("/virtualbox.ts")
 def virtualbox_ts():
-        
+        base = "https://www.virtualbox.org/download/testcase/nls/6.1/"
+        base = "https://www.virtualbox.org/download/testcase/nls/trunk/"
         filename = 'VirtualBox_xx_YY.ts'
         localfile = 'data/' + filename
-        maybe_download_file(localfile, filename)
+        maybe_download_file(base, filename, True)
         
         return Path(localfile).read_text()
 
-def maybe_download_file(localfile, filename):
-        
+@app.route("/qmapshack.ts")
+def qmapshack_ts():
+        base = "https://raw.githubusercontent.com/Maproom/qmapshack/master/src/qmapshack/locale/"
+        filename = "qmapshack.ts"
+        localfile = 'data/' + filename
+        maybe_download_file(base, filename, False)
+        return Path(localfile).read_text()
+
+
+def maybe_download_file(base, filename, transform):  
+        localfile = 'data/' + filename
         if path.exists(localfile):
                 age = path.getmtime(localfile)
                 if age > SECONDS_IN_DAY:
                         remove(localfile)
         
         if not path.exists(localfile):
-                base = "https://www.virtualbox.org/download/testcase/nls/6.1/"
                 r = requests.get(base+filename, allow_redirects=True)
-                new_content = r.text.replace('<numerusform></numerusform>', '<numerusform></numerusform><numerusform></numerusform>')
+                new_content = r.text.replace('<numerusform></numerusform>', '<numerusform></numerusform><numerusform></numerusform>') if transform else r.text
                 open(localfile, 'w').write(new_content)
-
-        
         
 
 http_server = WSGIServer(('', 5000), app)
