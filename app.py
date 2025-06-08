@@ -23,7 +23,7 @@ def virtualbox_ts():
 
 
 @app.route("/qt.ts")
-def virtualbox_ts():
+def qt_ts():
         base = "https://www.virtualbox.org/download/testcase/nls/trunk/"
         filename = 'qt_xx_YY.ts'
         localfile = 'data/' + filename
