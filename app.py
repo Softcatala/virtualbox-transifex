@@ -21,6 +21,17 @@ def virtualbox_ts():
         
         return Path(localfile).read_text()
 
+
+@app.route("/qt.ts")
+def virtualbox_ts():
+        base = "https://www.virtualbox.org/download/testcase/nls/trunk/"
+        filename = 'qt_xx_YY.ts'
+        localfile = 'data/' + filename
+        maybe_download_file(base, filename, True)
+        
+        return Path(localfile).read_text()
+
+
 @app.route("/qmapshack.ts")
 def qmapshack_ts():
         base = "https://raw.githubusercontent.com/Maproom/qmapshack/dev/src/qmapshack/locale/"
