@@ -34,7 +34,7 @@ def qt_ts():
 
 @app.route("/qmapshack.ts")
 def qmapshack_ts():
-        base = "https://raw.githubusercontent.com/Maproom/qmapshack/dev/src/qmapshack/locale/"
+        base = "https://raw.githubusercontent.com/Maproom/qmapshack/refs/heads/dev/src/qmapshack/locale/"
         filename = "qmapshack.ts"
         localfile = 'data/' + filename
         maybe_download_file(base, filename, False)
